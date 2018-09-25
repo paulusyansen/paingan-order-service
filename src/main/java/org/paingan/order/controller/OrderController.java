@@ -2,7 +2,7 @@ package org.paingan.order.controller;
 
 import java.util.Optional;
 
-import org.paingan.order.client.MemberServiceProxy;
+import org.paingan.order.client.MemberServiceClient;
 import org.paingan.order.domain.MemberDTO;
 import org.paingan.order.domain.Order;
 import org.paingan.order.repository.OrderRepository;
@@ -24,7 +24,7 @@ public class OrderController {
 	private OrderRepository orderRepository;
 	
 	@Autowired
-	private MemberServiceProxy  memberServiceProxy;
+	private MemberServiceClient  memberServiceProxy;
 	
 	@Autowired
 	private Environment environment;

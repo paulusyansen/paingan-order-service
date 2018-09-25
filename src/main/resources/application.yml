@@ -1,0 +1,57 @@
+server:
+  port: ${server.port}
+  
+spring:
+  application:
+    name: paingan-order-service
+  datasource:
+    url: jdbc:h2:mem:orderdb
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+  security:
+    filter:
+      order: 1
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    locator:
+      discovery:
+        enabled: true
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 100
+    metadata-map:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8085/oauth/token
+      client-id: paingan-client
+      client-secret: paingan-secret
+      scope: read,write,trust
+      user-authorization-uri: http://localhost:8085/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:8085/user/authenticate
+
