@@ -25,7 +25,7 @@ public interface MemberServiceClient {
     
     
     
-	@GetMapping("/api/member/{id}")
+	@GetMapping("/member/{id}")
 	public @ResponseBody MemberDTO getMember(@PathVariable("id") Long id);
 		
 	
