@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class OrderController {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -29,7 +29,7 @@ public class OrderController {
 	@Autowired
 	private Environment environment;
 
-	@GetMapping(value="/api/order/{id}")
+	@GetMapping(value="/id/{id}")
 	public ResponseEntity<Order> findById(@PathVariable Long id) {
 		
 		 Optional<Order> order = orderRepository.findById(id);
@@ -42,7 +42,7 @@ public class OrderController {
 		 log.info("{}",order);
 		 return ResponseEntity.ok(new Order());
 	}
-	@GetMapping(value="/api/order/member/{id}")
+	@GetMapping(value="/member/id/{id}")
 	public ResponseEntity<MemberDTO> findByMemberId(@PathVariable Long id) {
 		
 		MemberDTO member = memberServiceProxy.getMember(id);
