@@ -1,7 +1,6 @@
 package org.paingan.order.client;
 
 import org.paingan.order.domain.MemberDTO;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,7 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
 @FeignClient(name="paingan-member-service", configuration = MemberServiceClient.FeignClientConfiguration.class)
-@RibbonClient("paingan-member-service")
+//@RibbonClient("paingan-member-service")
 public interface MemberServiceClient {
 	public static final String AUTHORIZATION_HEADER= "Authorization";
     public static final String BEARER_TOKEN_TYPE = "Bearer";
